@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using SXL.Syntax.Nodes;
+using SXL.Interpreter.SxlParser.Syntax.Nodes;
 
-namespace SXL.Syntax
+namespace SXL.Interpreter.SxlParser.Syntax
 {
     public abstract class TelSyntaxNode
     {

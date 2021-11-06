@@ -1,6 +1,7 @@
 using Jammo.ParserTools;
+using SXL.Interpreter.SxlParser.SxlLexer;
 
-namespace SXL.Syntax.Nodes.Expressions
+namespace SXL.Interpreter.SxlParser.Syntax.Nodes.Expressions
 {
     public abstract class ExpressionSyntax : TelSyntaxNode
     {

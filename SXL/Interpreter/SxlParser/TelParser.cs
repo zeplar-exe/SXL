@@ -1,8 +1,9 @@
 using Jammo.ParserTools;
-using SXL.Syntax;
-using SXL.Syntax.Nodes;
+using SXL.Interpreter.SxlParser.SxlLexer;
+using SXL.Interpreter.SxlParser.Syntax;
+using SXL.Interpreter.SxlParser.Syntax.Nodes;
 
-namespace SXL
+namespace SXL.Interpreter.SxlParser
 {
     public static class TelParser
     {

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Jammo.ParserTools;
 
-namespace SXL
+namespace SXL.Interpreter.SxlParser.SxlLexer
 {
     public class TelLexer
     {

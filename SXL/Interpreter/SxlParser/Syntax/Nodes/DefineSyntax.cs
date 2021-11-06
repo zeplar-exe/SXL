@@ -1,6 +1,7 @@
 using Jammo.ParserTools;
+using SXL.Interpreter.SxlParser.SxlLexer;
 
-namespace SXL.Syntax.Nodes
+namespace SXL.Interpreter.SxlParser.Syntax.Nodes
 {
     public class DefineSyntax : TelSyntaxNode
     {

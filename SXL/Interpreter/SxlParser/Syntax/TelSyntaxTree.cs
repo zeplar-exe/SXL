@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace SXL.Syntax
+namespace SXL.Interpreter.SxlParser.Syntax
 {
     public class TelSyntaxTree
     {

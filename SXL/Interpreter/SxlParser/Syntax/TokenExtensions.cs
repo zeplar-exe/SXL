@@ -1,4 +1,6 @@
-namespace SXL.Syntax
+using SXL.Interpreter.SxlParser.SxlLexer;
+
+namespace SXL.Interpreter.SxlParser.Syntax
 {
     public static class TokenExtensions
     {

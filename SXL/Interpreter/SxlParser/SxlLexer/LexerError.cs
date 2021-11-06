@@ -1,4 +1,4 @@
-namespace SXL
+namespace SXL.Interpreter.SxlParser.SxlLexer
 {
     public readonly struct LexerError
     {

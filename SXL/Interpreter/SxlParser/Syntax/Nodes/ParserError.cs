@@ -1,4 +1,4 @@
-namespace SXL.Syntax.Nodes
+namespace SXL.Interpreter.SxlParser.Syntax.Nodes
 {
     public class ParserError
     {

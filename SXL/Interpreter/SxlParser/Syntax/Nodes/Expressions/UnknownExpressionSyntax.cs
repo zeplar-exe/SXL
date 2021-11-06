@@ -1,4 +1,6 @@
-namespace SXL.Syntax.Nodes.Expressions
+using SXL.Interpreter.SxlParser.SxlLexer;
+
+namespace SXL.Interpreter.SxlParser.Syntax.Nodes.Expressions
 {
     public class UnknownExpressionSyntax : ExpressionSyntax
     {

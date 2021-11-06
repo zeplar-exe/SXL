@@ -1,4 +1,4 @@
-namespace SXL.Syntax
+namespace SXL.Interpreter.SxlParser.Syntax
 {
     public class TelIdentifier
     {

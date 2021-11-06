@@ -9,8 +9,7 @@ namespace SXL.Interpreter.SxlParser.SxlLexer
         private readonly string text;
         private EnumerableNavigator<LexerToken> navigator;
 
-        private int line;
-        private int column;
+        private StringContext context;
 
         private readonly List<TelToken> tokens = new();
         private readonly List<LexerError> errors = new();
@@ -25,8 +24,7 @@ namespace SXL.Interpreter.SxlParser.SxlLexer
 
         public IEnumerable<TelToken> Lex()
         {
-            line = 0;
-            column = 0;
+            context = new StringContext();
             
             errors.Clear();
             
@@ -38,7 +36,7 @@ namespace SXL.Interpreter.SxlParser.SxlLexer
 
             foreach (var token in navigator.EnumerateFromIndex())
             {
-                column += token.RawToken.Length;
+                context.MoveColumn(token.Span.Size);
 
                 switch (token.Id)
                 {
@@ -142,8 +140,7 @@ namespace SXL.Interpreter.SxlParser.SxlLexer
                     }
                     case LexerTokenId.Newline:
                     {
-                        line++;
-                        column = 0;
+                        context.MoveLine();
                         
                         break;
                     }
@@ -260,12 +257,12 @@ namespace SXL.Interpreter.SxlParser.SxlLexer
 
         private void AddToken(string rawText, TelTokenId id)
         {
-            tokens.Add(new TelToken(rawText, line, column, id));
+            tokens.Add(new TelToken(rawText, context, id));
         }
 
         private void ReportError(LexerToken token)
         {
-            errors.Add(new LexerError("Unexpected character", token.ToString(), line, column));
+            errors.Add(new LexerError("Unexpected character", token.ToString(), context));
         }
     }
 }

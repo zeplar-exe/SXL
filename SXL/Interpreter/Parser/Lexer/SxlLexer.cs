@@ -237,6 +237,7 @@ namespace SXL.Interpreter.Parser.Lexer
                     default:
                     {
                         ReportError(token);
+                        AddToken(token.ToString(), SxlTokenId.Unknown);
                         break;
                     }
                 }

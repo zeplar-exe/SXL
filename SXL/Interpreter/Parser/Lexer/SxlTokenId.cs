@@ -4,8 +4,6 @@ namespace SXL.Interpreter.Parser.Lexer
     {
         Unknown = 0,
             
-        Newline,
-            
         Identifier,
             
         StringLiteral,

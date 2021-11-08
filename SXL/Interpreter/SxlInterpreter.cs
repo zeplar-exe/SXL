@@ -24,11 +24,6 @@ namespace SXL.Interpreter
             parser = new SxlParser(stream);
         }
 
-        private static async Task<string> ReadStreamAsync(Stream stream)
-        {
-            return await new StreamReader(stream).ReadToEndAsync();
-        }
-
         public void Start()
         {
             

@@ -1,17 +1,17 @@
 using System.Collections.Generic;
 
-namespace SXL.Interpreter.SxlParser.Syntax
+namespace SXL.Interpreter.Parser.Syntax
 {
-    public class TelSyntaxTree
+    public class SxlSyntaxTree
     {
-        public readonly TelSyntaxNode Root;
+        public readonly SxlSyntaxNode Root;
 
-        public TelSyntaxTree(TelSyntaxNode root)
+        public SxlSyntaxTree(SxlSyntaxNode root)
         {
             Root = root;
         }
 
-        public IEnumerable<TelSyntaxNode> Enumerate()
+        public IEnumerable<SxlSyntaxNode> Enumerate()
         {
             yield return Root;
 

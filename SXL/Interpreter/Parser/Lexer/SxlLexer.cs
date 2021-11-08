@@ -2,33 +2,33 @@ using System.Collections.Generic;
 using System.Linq;
 using Jammo.ParserTools;
 
-namespace SXL.Interpreter.SxlParser.SxlLexer
+namespace SXL.Interpreter.Parser.Lexer
 {
-    public class TelLexer
+    public class SxlLexer
     {
         private readonly string text;
         private EnumerableNavigator<LexerToken> navigator;
 
         private StringContext context;
 
-        private readonly List<TelToken> tokens = new();
+        private readonly List<SxlToken> tokens = new();
         private readonly List<LexerError> errors = new();
 
-        public TelLexer(string text)
+        public SxlLexer(string text)
         {
             this.text = text;
         }
 
-        public IEnumerable<TelToken> Tokens => tokens.AsReadOnly();
+        public IEnumerable<SxlToken> Tokens => tokens.AsReadOnly();
         public IEnumerable<LexerError> Errors => errors.AsReadOnly();
 
-        public IEnumerable<TelToken> Lex()
+        public IEnumerable<SxlToken> Lex()
         {
             context = new StringContext();
             
             errors.Clear();
             
-            navigator = new Lexer(text, new LexerOptions(t => t.Is(LexerTokenId.Whitespace))
+            navigator = new Jammo.ParserTools.Lexer(text, new LexerOptions(t => t.Is(LexerTokenId.Whitespace))
                 {
                     IncludeUnderscoreAsAlphabetic = true,
                     IncludePeriodAsNumeric = true
@@ -45,31 +45,31 @@ namespace SXL.Interpreter.SxlParser.SxlLexer
                         switch (token.RawToken)
                         {
                             case "define":
-                                AddToken(token.ToString(), TelTokenId.DefineInstruction);
+                                AddToken(token.ToString(), SxlTokenId.DefineInstruction);
                                 break;
                             case "as":
-                                AddToken(token.ToString(), TelTokenId.AsInstruction);
+                                AddToken(token.ToString(), SxlTokenId.AsInstruction);
                                 break;
                             case "import":
-                                AddToken(token.ToString(), TelTokenId.ImportInstruction);
+                                AddToken(token.ToString(), SxlTokenId.ImportInstruction);
                                 break;
                             case "from":
-                                AddToken(token.ToString(), TelTokenId.FromInstruction);
+                                AddToken(token.ToString(), SxlTokenId.FromInstruction);
                                 break;
                             case "protocol":
-                                AddToken(token.ToString(), TelTokenId.ProtocolKeyword);
+                                AddToken(token.ToString(), SxlTokenId.ProtocolKeyword);
                                 break;
                             case "and":
-                                AddToken(token.ToString(), TelTokenId.And);
+                                AddToken(token.ToString(), SxlTokenId.And);
                                 break;
                             case "or":
-                                AddToken(token.ToString(), TelTokenId.Or);
+                                AddToken(token.ToString(), SxlTokenId.Or);
                                 break;
                             case "not":
-                                AddToken(token.ToString(), TelTokenId.Not);
+                                AddToken(token.ToString(), SxlTokenId.Not);
                                 break;
                             default:
-                                AddToken(token.ToString(), TelTokenId.Identifier);
+                                AddToken(token.ToString(), SxlTokenId.Identifier);
                                 break;
                         }
 
@@ -77,7 +77,7 @@ namespace SXL.Interpreter.SxlParser.SxlLexer
                     }
                     case LexerTokenId.Numeric:
                     {
-                        AddToken(token.ToString(), TelTokenId.NumericLiteral);
+                        AddToken(token.ToString(), SxlTokenId.NumericLiteral);
                         break;
                     }
                     case LexerTokenId.Quote:
@@ -99,7 +99,7 @@ namespace SXL.Interpreter.SxlParser.SxlLexer
                             { // Passing the id guarantees the closing token will be the same
                                 AddToken(
                                     string.Concat(stringTokens.SelectMany(t => t.RawToken)),
-                                    TelTokenId.StringLiteral);
+                                    SxlTokenId.StringLiteral);
 
                                 break;
                             }
@@ -109,33 +109,33 @@ namespace SXL.Interpreter.SxlParser.SxlLexer
                     }
                     case LexerTokenId.LeftParenthesis:
                     {
-                        AddToken(token.ToString(), TelTokenId.OpenParenthesis);
+                        AddToken(token.ToString(), SxlTokenId.OpenParenthesis);
 
                         break;
                     }
                     case LexerTokenId.RightParenthesis:
                     {
-                        AddToken(token.ToString(), TelTokenId.CloseParenthesis);
+                        AddToken(token.ToString(), SxlTokenId.CloseParenthesis);
                         break;
                     }
                     case LexerTokenId.OpenBracket:
                     {
-                        AddToken(token.ToString(), TelTokenId.OpenBracket);
+                        AddToken(token.ToString(), SxlTokenId.OpenBracket);
                         break;
                     }
                     case LexerTokenId.CloseBracket:
                     {
-                        AddToken(token.ToString(), TelTokenId.CloseBracket);
+                        AddToken(token.ToString(), SxlTokenId.CloseBracket);
                         break;
                     }
                     case LexerTokenId.OpenCurlyBracket:
                     {
-                        AddToken(token.ToString(), TelTokenId.OpenCurlyBracket);
+                        AddToken(token.ToString(), SxlTokenId.OpenCurlyBracket);
                         break;
                     }
                     case LexerTokenId.CloseCurlyBracket:
                     {
-                        AddToken(token.ToString(), TelTokenId.CloseCurlyBracket);
+                        AddToken(token.ToString(), SxlTokenId.CloseCurlyBracket);
                         break;
                     }
                     case LexerTokenId.Newline:
@@ -146,32 +146,32 @@ namespace SXL.Interpreter.SxlParser.SxlLexer
                     }
                     case LexerTokenId.Period:
                     {
-                        AddToken(token.ToString(), TelTokenId.Period);
+                        AddToken(token.ToString(), SxlTokenId.Period);
                         break;
                     }
                     case LexerTokenId.Comma:
                     {
-                        AddToken(token.ToString(), TelTokenId.Comma);
+                        AddToken(token.ToString(), SxlTokenId.Comma);
                         break;
                     }
                     case LexerTokenId.Plus:
                     {
-                        AddToken(token.ToString(), TelTokenId.Plus);
+                        AddToken(token.ToString(), SxlTokenId.Plus);
                         break;
                     }
                     case LexerTokenId.Dash:
                     {
-                        AddToken(token.ToString(), TelTokenId.Minus);
+                        AddToken(token.ToString(), SxlTokenId.Minus);
                         break;
                     }
                     case LexerTokenId.Star:
                     {
-                        AddToken(token.ToString(), TelTokenId.Multiply);
+                        AddToken(token.ToString(), SxlTokenId.Multiply);
                         break;
                     }
                     case LexerTokenId.Slash:
                     {
-                        AddToken(token.ToString(), TelTokenId.Divide);
+                        AddToken(token.ToString(), SxlTokenId.Divide);
                         break;
                     }
                     case LexerTokenId.LessThan:
@@ -180,11 +180,11 @@ namespace SXL.Interpreter.SxlParser.SxlLexer
                         {
                             navigator.Skip();
 
-                            AddToken(token.ToString(), TelTokenId.LessThanOrEqual);
+                            AddToken(token.ToString(), SxlTokenId.LessThanOrEqual);
                             break;
                         }
 
-                        AddToken(token.ToString(), TelTokenId.LessThan);
+                        AddToken(token.ToString(), SxlTokenId.LessThan);
                         break;
                     }
                     case LexerTokenId.GreaterThan:
@@ -193,11 +193,11 @@ namespace SXL.Interpreter.SxlParser.SxlLexer
                         {
                             navigator.Skip();
 
-                            AddToken(token.ToString(), TelTokenId.GreaterThanOrEqual);
+                            AddToken(token.ToString(), SxlTokenId.GreaterThanOrEqual);
                             break;
                         }
 
-                        AddToken(token.ToString(), TelTokenId.GreaterThan);
+                        AddToken(token.ToString(), SxlTokenId.GreaterThan);
                         break;
                     }
                     case LexerTokenId.Equals:
@@ -206,7 +206,7 @@ namespace SXL.Interpreter.SxlParser.SxlLexer
                         {
                             navigator.Skip();
 
-                            AddToken(token.ToString(), TelTokenId.Equals);
+                            AddToken(token.ToString(), SxlTokenId.Equals);
                             break;
                         }
 
@@ -214,11 +214,11 @@ namespace SXL.Interpreter.SxlParser.SxlLexer
                         {
                             navigator.Skip();
 
-                            AddToken(token.ToString(), TelTokenId.DelegateOperator);
+                            AddToken(token.ToString(), SxlTokenId.DelegateOperator);
                             break;
                         }
 
-                        AddToken(token.ToString(), TelTokenId.Assignment);
+                        AddToken(token.ToString(), SxlTokenId.Assignment);
                         break;
                     }
                     case LexerTokenId.ExclamationMark:
@@ -227,7 +227,7 @@ namespace SXL.Interpreter.SxlParser.SxlLexer
                         {
                             navigator.Skip();
 
-                            AddToken(token.ToString(), TelTokenId.NotEqual);
+                            AddToken(token.ToString(), SxlTokenId.NotEqual);
                             break;
                         }
 
@@ -255,9 +255,9 @@ namespace SXL.Interpreter.SxlParser.SxlLexer
             return navigator.TryPeekLast(out var token) && token.Is(id);
         }
 
-        private void AddToken(string rawText, TelTokenId id)
+        private void AddToken(string rawText, SxlTokenId id)
         {
-            tokens.Add(new TelToken(rawText, context, id));
+            tokens.Add(new SxlToken(rawText, context, id));
         }
 
         private void ReportError(LexerToken token)

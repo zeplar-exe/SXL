@@ -1,12 +1,12 @@
-using SXL.Interpreter.SxlParser.SxlLexer;
+using SXL.Interpreter.Parser.Lexer;
 
-namespace SXL.Interpreter.SxlParser.Syntax.Nodes.Expressions
+namespace SXL.Interpreter.Parser.Syntax.Nodes.Expressions
 {
     public class UnknownExpressionSyntax : ExpressionSyntax
     {
-        public TelToken Token;
+        public SxlToken Token;
 
-        public UnknownExpressionSyntax(TelToken token)
+        public UnknownExpressionSyntax(SxlToken token)
         {
             Token = token;
         }

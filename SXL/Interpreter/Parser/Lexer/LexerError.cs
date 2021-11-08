@@ -1,6 +1,6 @@
 using Jammo.ParserTools;
 
-namespace SXL.Interpreter.SxlParser.SxlLexer
+namespace SXL.Interpreter.Parser.Lexer
 {
     public readonly struct LexerError
     {

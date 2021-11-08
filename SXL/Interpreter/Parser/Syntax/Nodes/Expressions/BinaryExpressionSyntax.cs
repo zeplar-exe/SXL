@@ -1,21 +1,16 @@
-using Jammo.ParserTools;
-using SXL.Interpreter.SxlParser.SxlLexer;
+using SXL.Interpreter.Parser.Lexer;
 
-namespace SXL.Interpreter.SxlParser.Syntax.Nodes.Expressions
+namespace SXL.Interpreter.Parser.Syntax.Nodes.Expressions
 {
     public class BinaryExpressionSyntax : ExpressionSyntax
     {
         public ExpressionSyntax Left;
-        public TelToken Operator;
+        public SxlToken Operator;
         public ExpressionSyntax Right;
-
-        public new static BinaryExpressionSyntax Parse(EnumerableNavigator<TelToken> navigator)
+        
+        public BinaryExpressionSyntax()
         {
-            var syntax = new BinaryExpressionSyntax();
-
             
-            
-            return syntax;
         }
         
         public override string ToString()

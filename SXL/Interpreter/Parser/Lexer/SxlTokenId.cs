@@ -1,6 +1,6 @@
-namespace SXL.Interpreter.SxlParser.SxlLexer
+namespace SXL.Interpreter.Parser.Lexer
 {
-    public enum TelTokenId
+    public enum SxlTokenId
     {
         Unknown = 0,
             

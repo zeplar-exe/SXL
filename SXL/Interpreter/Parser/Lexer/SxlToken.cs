@@ -1,21 +1,21 @@
 using Jammo.ParserTools;
 
-namespace SXL.Interpreter.SxlParser.SxlLexer
+namespace SXL.Interpreter.Parser.Lexer
 {
-    public class TelToken
+    public class SxlToken
     {
         public readonly string Text;
         public readonly StringContext Context;
-        public readonly TelTokenId Id;
+        public readonly SxlTokenId Id;
 
-        public TelToken(string text, StringContext context, TelTokenId id)
+        public SxlToken(string text, StringContext context, SxlTokenId id)
         {
             Text = text;
             Context = context;
             Id = id;
         }
 
-        public bool Is(TelTokenId id) => Id == id;
+        public bool Is(SxlTokenId id) => Id == id;
 
         public override string ToString()
         {
